@@ -2,9 +2,9 @@ package com.springboot.member.dto;
 
 import lombok.Getter;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Getter
 public class MemberPostDto {

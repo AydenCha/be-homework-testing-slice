@@ -4,7 +4,7 @@ import com.springboot.member.entity.Member;
 import com.springboot.validator.NotSpace;
 import lombok.Getter;
 
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.Pattern;
 
 @Getter
 public class MemberPatchDto {

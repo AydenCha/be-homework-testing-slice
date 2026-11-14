@@ -1,10 +1,10 @@
 package com.springboot.slice.controller.member;
 
 import com.springboot.member.dto.MemberDto;
-import com.google.gson.Gson;
+import tools.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 //    @WebMvcTest(controllers = MemberController.class)
-//    @MockBean(JpaMetamodelMappingContext.class)
+//    @MockitoBean(JpaMetamodelMappingContext.class)
 @Transactional
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -27,12 +27,12 @@ class MemberControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
-    private Gson gson;
+    private ObjectMapper objectMapper;
 
-//    @MockBean
+//    @MockitoBean
 //    private MemberService memberService;
 
-//    @MockBean
+//    @MockitoBean
 //    private MemberMapper mapper;
 
     @Test
@@ -41,7 +41,7 @@ class MemberControllerTest {
         MemberDto.Post post = new MemberDto.Post("hgd@gmail.com",
                                                         "홍길동",
                                                     "010-1234-5678");
-        String content = gson.toJson(post);
+        String content = objectMapper.writeValueAsString(post);
 
 
         // when
@@ -63,7 +63,7 @@ class MemberControllerTest {
     void getMemberTest() throws Exception {
         // given: MemberController의 getMember()를 테스트하기 위해서 postMember()를 이용해 테스트 데이터를 생성 후, DB에 저장
         MemberDto.Post post = new MemberDto.Post("hgd@gmail.com","홍길동","010-1111-1111");
-        String postContent = gson.toJson(post);
+        String postContent = objectMapper.writeValueAsString(post);
 
         ResultActions postActions =
                 mockMvc.perform(
